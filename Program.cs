@@ -2,6 +2,7 @@
 {
     internal class Program
     {
+
         class Link
         {
             private string name;
@@ -38,6 +39,12 @@
                 get { return fileId; }
                 set { fileId = value; } 
             }
+        }
+
+
+        public static void PrintList() 
+        {
+            Console.WriteLine($"{komplett lista}");
         }
 
         static void Main(string[] args)
