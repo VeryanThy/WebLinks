@@ -40,8 +40,8 @@ namespace WebLinks
                 get { return fileId; }
                 set { fileId = value; } 
             }
-           
         }
+       
 
         public static void Open()
         {
