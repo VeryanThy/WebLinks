@@ -1,4 +1,5 @@
-﻿namespace WebLinks
+﻿
+namespace WebLinks
 {
     internal class Program
     {
@@ -101,6 +102,27 @@
             foreach (string h in hstr) Console.WriteLine(h);
         }
 
-        
+
+        public static void LoadFile()
+        {
+            List <Links> Nyheter = new List<Links>();
+            using (StreamReader sr = new StreamReader("Nyheter.txt")) {
+                int counter = 0;
+                string ln;
+
+                while ((ln = sr.ReadLine()) != null)
+                {
+                    string[] line = ln.Split(", ");
+                    string name = line[0];
+                    string description= line[1];
+                    string url= line[2];
+                    Link[counter](line[0], line[1], line[2], counter);
+                    Nyheter.Add(Link[counter]);
+                    counter++;
+                }
+            }
+        }
+       
+
     }
 }
