@@ -3,6 +3,51 @@ namespace WebLinks
 {
     internal class Program
     {
+
+        class Link
+        {
+            private string name;
+            private string url;
+            private string description;
+            private string fileId;
+
+            public Link(string name, string url, string desc, string fileId) {
+                this.name = name;
+                this.url = url;
+                this.description = desc;
+                this.fileId = fileId;
+            }
+            
+            public string Name {
+                get { return name; }
+                set { name = value; }   
+            }
+
+            public String Url
+            {
+                get { return url; } 
+                set { url = value; }
+            }
+
+            public string Description
+            {
+                get { return description; }
+                set { description = value; }
+            }
+
+            public string FileId
+            {
+                get { return fileId; }
+                set { fileId = value; } 
+            }
+        }
+
+
+        public static void PrintList() 
+        {
+            Console.WriteLine($"{komplett lista}");
+        }
+
         static void Main(string[] args)
         {
             PrintWelcome();
@@ -58,14 +103,6 @@ namespace WebLinks
         }
 
 
-
-
-
-
-
-
-
-
         public static void LoadFile()
         {
             List <Links> Nyheter = new List<Links>();
@@ -86,5 +123,6 @@ namespace WebLinks
             }
         }
        
+
     }
 }
