@@ -2,6 +2,10 @@
 {
     internal class Program
     {
+        public static void PrintList() 
+        {
+            Console.WriteLine($"{komplett lista}");
+        }
         static void Main(string[] args)
         {
             PrintWelcome();
