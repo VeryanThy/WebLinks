@@ -37,7 +37,10 @@ namespace WebLinks
 
         public static void PrintContents() 
         {
-            Console.WriteLine($"{komplett lista}");
+            foreach (string element in lista) 
+            {
+                Console.WriteLine($"{komplett lista}{}{}");
+            }
         }
 
         static void Main(string[] args)

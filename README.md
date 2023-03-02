@@ -1,7 +1,6 @@
 # WebLinks
 
 # ATT GÖRA:
-Klass för länkarna 
 Organisera lista/listor
 Rätt variabler för prel. metoder
 Ladda fil
@@ -15,5 +14,3 @@ Konstruktor "Namn, Beskrivning, URL och List-ID
 
 Metoder:
 Set och Get
-
-# Organisera upp "laddlista" för uppg 1.
