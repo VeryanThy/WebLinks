@@ -9,9 +9,9 @@ namespace WebLinks
             private string name;
             private string url;
             private string description;
-            private string fileId;
+            private int fileId;
 
-            public Link(string name, string url, string desc, string fileId) {
+            public Link(string name, string url, string desc, int fileId) {
                 this.name = name;
                 this.url = url;
                 this.description = desc;
@@ -23,7 +23,7 @@ namespace WebLinks
                 set { name = value; }   
             }
 
-            public String Url
+            public string Url
             {
                 get { return url; } 
                 set { url = value; }
@@ -35,7 +35,7 @@ namespace WebLinks
                 set { description = value; }
             }
 
-            public string FileId
+            public int FileId
             {
                 get { return fileId; }
                 set { fileId = value; } 
@@ -43,7 +43,7 @@ namespace WebLinks
         }
 
 
-        public static void PrintList() 
+        public static void PrintContents() 
         {
             Console.WriteLine($"{komplett lista}");
         }
@@ -105,7 +105,7 @@ namespace WebLinks
 
         public static void LoadFile()
         {
-            List <Links> Nyheter = new List<Links>();
+            List <Link> Nyheter = new List<Link>();
             using (StreamReader sr = new StreamReader("Nyheter.txt")) {
                 int counter = 0;
                 string ln;
@@ -115,9 +115,8 @@ namespace WebLinks
                     string[] line = ln.Split(", ");
                     string name = line[0];
                     string description= line[1];
-                    string url= line[2];
-                    Link[counter](line[0], line[1], line[2], counter);
-                    Nyheter.Add(Link[counter]);
+                    string url= line[2];                 
+                    Nyheter.Add(new Link(line[0], line[1], line[2], counter));
                     counter++;
                 }
             }
