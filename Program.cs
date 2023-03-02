@@ -117,11 +117,14 @@ namespace WebLinks
             }
         }
 
-        public static void SaveToFile(string filename = "nyheter.txt")
+        public static void SaveToFile(string filename = "Nyheter.txt")
         {
+            using (StreamWriter sw = new StreamWriter(filename))
+            {
 
+            }
         }
-       
+
 
     }
 }
