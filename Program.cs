@@ -9,23 +9,23 @@ namespace WebLinks
             private string name;
             private string url;
             private string description;
+            private int fileId;
 
-            public Link(string name, string url, string desc)
-            {
+            public Link(string name, string url, string desc, int fileId) {
                 this.name = name;
                 this.url = url;
                 this.description = desc;
+                this.fileId = fileId;
             }
-
-            public string Name
-            {
+            
+            public string Name {
                 get { return name; }
-                set { name = value; }
+                set { name = value; }   
             }
 
             public string Url
             {
-                get { return url; }
+                get { return url; } 
                 set { url = value; }
             }
 
@@ -34,14 +34,35 @@ namespace WebLinks
                 get { return description; }
                 set { description = value; }
             }
+
+            public int FileId
+            {
+                get { return fileId; }
+                set { fileId = value; } 
+            }
+           
         }
 
-
-        public static void PrintContents()
+        public static void Open()
         {
-            foreach (Link element in Nyheter)
+            string openName;
+
+            Console.Write("Name of link you want to open: ");
+            openName = Console.ReadLine();
+            foreach (Link in Nyheter)
             {
-                Console.WriteLine($"{name} | {description} | {url}");
+                if (Link.name.Contains(openName))
+                {
+                    System.Diagnostics.Process.Start(Link.url);
+                }
+            }
+        }
+
+        public static void PrintContents() 
+        {
+            foreach (string element in lista) 
+            {
+                Console.WriteLine($"{komplett lista}{}{}");
             }
         }
 
@@ -67,7 +88,7 @@ namespace WebLinks
                 }
                 else if (command == "open")
                 {
-                    NotYetImplemented(command);
+                    Open();
                 }
                 else
                 {
@@ -99,12 +120,11 @@ namespace WebLinks
             foreach (string h in hstr) Console.WriteLine(h);
         }
 
-        static List<Link> Nyheter = new List<Link>();
 
         public static void LoadFile()
         {
-            using (StreamReader sr = new StreamReader("Nyheter.txt"))
-            {
+            List <Link> Nyheter = new List<Link>();
+            using (StreamReader sr = new StreamReader("Nyheter.txt")) {
                 int counter = 0;
                 string ln;
 
@@ -112,15 +132,14 @@ namespace WebLinks
                 {
                     string[] line = ln.Split(", ");
                     string name = line[0];
-                    string description = line[1];
-                    string url = line[2];
-                    Nyheter.Add(new Link(line[0], line[1], line[2]));
+                    string description= line[1];
+                    string url= line[2];                 
+                    Nyheter.Add(new Link(line[0], line[1], line[2], counter));
                     counter++;
                 }
             }
         }
        
 
-        }
     }
 }
