@@ -10,20 +10,22 @@ namespace WebLinks
             private string url;
             private string description;
 
-            public Link(string name, string url, string desc) {
+            public Link(string name, string url, string desc)
+            {
                 this.name = name;
                 this.url = url;
                 this.description = desc;
             }
-            
-            public string Name {
+
+            public string Name
+            {
                 get { return name; }
-                set { name = value; }   
+                set { name = value; }
             }
 
             public string Url
             {
-                get { return url; } 
+                get { return url; }
                 set { url = value; }
             }
 
@@ -35,11 +37,11 @@ namespace WebLinks
         }
 
 
-        public static void PrintContents() 
+        public static void PrintContents()
         {
-            foreach (string element in Nyheter) 
+            foreach (Link element in Nyheter)
             {
-                Console.WriteLine($"{}{}{}");
+                Console.WriteLine($"{name} | {description} | {url}");
             }
         }
 
@@ -97,11 +99,12 @@ namespace WebLinks
             foreach (string h in hstr) Console.WriteLine(h);
         }
 
-            static List <Link> Nyheter = new List<Link>();
+        static List<Link> Nyheter = new List<Link>();
 
         public static void LoadFile()
         {
-            using (StreamReader sr = new StreamReader("Nyheter.txt")) {
+            using (StreamReader sr = new StreamReader("Nyheter.txt"))
+            {
                 int counter = 0;
                 string ln;
 
@@ -109,13 +112,14 @@ namespace WebLinks
                 {
                     string[] line = ln.Split(", ");
                     string name = line[0];
-                    string description= line[1];
-                    string url= line[2];                 
+                    string description = line[1];
+                    string url = line[2];
                     Nyheter.Add(new Link(line[0], line[1], line[2]));
                     counter++;
                 }
             }
         }
+
 
         public static void SaveToFile(string filename = "Nyheter.txt")
         {
@@ -125,6 +129,6 @@ namespace WebLinks
             }
         }
 
-
+        }
     }
 }
