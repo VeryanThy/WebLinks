@@ -45,9 +45,9 @@ namespace WebLinks
 
         public static void PrintContents() 
         {
-            foreach (string element in lista) 
+            foreach (string element in Nyheter) 
             {
-                Console.WriteLine($"{komplett lista}{}{}");
+                Console.WriteLine($"{}{}{}");
             }
         }
 
@@ -105,10 +105,10 @@ namespace WebLinks
             foreach (string h in hstr) Console.WriteLine(h);
         }
 
+            static List <Link> Nyheter = new List<Link>();
 
         public static void LoadFile()
         {
-            List <Link> Nyheter = new List<Link>();
             using (StreamReader sr = new StreamReader("Nyheter.txt")) {
                 int counter = 0;
                 string ln;
