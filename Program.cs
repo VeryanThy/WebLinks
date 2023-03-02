@@ -116,6 +116,11 @@ namespace WebLinks
                 }
             }
         }
+
+        public static void SaveToFile(string filename = "neheter.txt")
+        {
+
+        }
        
 
     }
