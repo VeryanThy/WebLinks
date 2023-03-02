@@ -14,5 +14,3 @@ Konstruktor "Namn, Beskrivning, URL och List-ID
 
 Metoder:
 Set och Get
-
-# Organisera upp "laddlista" för uppg 1.
