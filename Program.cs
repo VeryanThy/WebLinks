@@ -9,13 +9,11 @@ namespace WebLinks
             private string name;
             private string url;
             private string description;
-            private int fileId;
 
-            public Link(string name, string url, string desc, int fileId) {
+            public Link(string name, string url, string desc) {
                 this.name = name;
                 this.url = url;
                 this.description = desc;
-                this.fileId = fileId;
             }
             
             public string Name {
@@ -33,12 +31,6 @@ namespace WebLinks
             {
                 get { return description; }
                 set { description = value; }
-            }
-
-            public int FileId
-            {
-                get { return fileId; }
-                set { fileId = value; } 
             }
         }
 
@@ -119,7 +111,7 @@ namespace WebLinks
                     string name = line[0];
                     string description= line[1];
                     string url= line[2];                 
-                    Nyheter.Add(new Link(line[0], line[1], line[2], counter));
+                    Nyheter.Add(new Link(line[0], line[1], line[2]));
                     counter++;
                 }
             }
