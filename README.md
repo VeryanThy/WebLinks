@@ -1,7 +1,6 @@
 # WebLinks
 
 # ATT GÖRA:
-Klass för länkarna 
 Organisera lista/listor
 Rätt variabler för prel. metoder
 Ladda fil
