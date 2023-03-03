@@ -1,6 +1,6 @@
-﻿
 using System;
 using System.Diagnostics;
+using System.Xml.Linq;
 
 namespace WebLinks
 {
@@ -43,13 +43,19 @@ namespace WebLinks
             string command;           
             do
             {
-                Console.Write(": ");
+                Console.Write("Command: ");
                 command = Console.ReadLine();
+                Console.Clear();
                 if (command == "quit")
                 {
-                    Console.WriteLine("Thank you and have a nice day.");
-
-                    SaveToFile($"{Environment.GetEnvironmentVariable("USERPROFILE")}\\source\\repos\\WebLinks\\Nyheter.txt");
+                    string Ans;
+                    Console.WriteLine("Do you want to save before quiting? Press Y for yes");
+                    Ans = Console.ReadLine();
+                    if (Ans == "Y")
+                    {
+                        SaveToFile($"{Environment.GetEnvironmentVariable("USERPROFILE")}\\source\\repos\\WebLinks\\Nyheter.txt");
+                    }
+                    else Console.WriteLine("Thank you and have a nice day.");
 
                 }
                 else if (command == "help")
@@ -84,6 +90,10 @@ namespace WebLinks
                     string filename = Console.ReadLine();
                     SaveToFile(filename);
                 }
+                else if (command == "search")
+                {
+                    SearchList();
+                }
                 else
                 {
                     Console.WriteLine($"Unknown command '{command}'");
@@ -96,9 +106,9 @@ namespace WebLinks
         }
         private static void PrintWelcome()
         {
-            Console.WriteLine("Hello and welcome to the AWESOME NEWS-PROGRAM");
-            Console.WriteLine("that brings you to the news.");
-            Console.WriteLine("Write 'help' for help!");
+            Console.WriteLine("Welcome to the AWESOME NEWS-PROGRAM!");
+            Console.WriteLine("We bring you to the news.\n");
+            Console.WriteLine("Write 'help' for help!\n");
         }
         private static void Open(List<Link> nyheter)
         {
@@ -120,7 +130,7 @@ namespace WebLinks
             {
                 Console.WriteLine($"{element.Name} : {element.Description} : {element.Url}");
             }
-        }      
+        }
         private static void WriteTheHelp()
         {
             string[] hstr = {
@@ -130,7 +140,8 @@ namespace WebLinks
                 "quit  - quit the program",
                 "add   - add link to list",
                 "list  - list available links",
-                "save  - save your links to file"
+                "save  - save your links to file",
+                "search - search list",
             };
             foreach (string h in hstr) Console.WriteLine(h);
         }
@@ -152,14 +163,32 @@ namespace WebLinks
         }
         private static void SaveToFile(string filename = "temp", List<Link> listname)
         {
+            if (filename == "temp") filename = ($"{Environment.GetEnvironmentVariable("USERPROFILE")}\\source\\repos\\WebLinks\\Nyheter.txt");
 
-            if (filename=="temp") filename = ($"{Environment.GetEnvironmentVariable("USERPROFILE")}\\source\\repos\\WebLinks\\Nyheter.txt");
-            
             // Eventeull fix för att tömma fil
             // File.WriteAllText(filename, String.Empty);
+
+
             using (StreamWriter sw = new StreamWriter(filename))
             {
                 listname.ForEach(link => sw.WriteLine($"{link.Name}," +
+                    $"{link.Description}," +
+                    $"{link.Url}"));
+
+            }
+        }
+
+        // Experimentell spara till ny fil-metod
+        public static void SaveToNewFile()
+        {
+            string saveFile = "";
+
+            Console.WriteLine("Enter path or file name (excl .txt): ");
+            saveFile = Console.ReadLine();
+
+            using (StreamWriter sw = new StreamWriter(saveFile + ".txt"))
+            {
+                nyheter.ForEach((link) => sw.WriteLine($"{link.Name}," +
                     $"{link.Description}," +
                     $"{link.Url}"));
             }
