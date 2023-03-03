@@ -1,6 +1,6 @@
-﻿
 using System;
 using System.Diagnostics;
+using System.Xml.Linq;
 
 namespace WebLinks
 {
@@ -81,6 +81,10 @@ namespace WebLinks
                 {
                     SaveToFile();
                 }
+                else if (command == "search")
+                {
+                    SearchList();
+                }
                 else
                 {
                     Console.WriteLine($"Unknown command '{command}'");
@@ -127,7 +131,8 @@ namespace WebLinks
                 "quit  - quit the program",
                 "add   - add link to list",
                 "list  - list available links",
-                "save  - save your links to file"
+                "save  - save your links to file",
+                "search - search list",
             };
             foreach (string h in hstr) Console.WriteLine(h);
         }
@@ -150,27 +155,48 @@ namespace WebLinks
         public static void SaveToFile(string filename = "temp")
         {
             if (filename == "temp") filename = ($"{Environment.GetEnvironmentVariable("USERPROFILE")}\\source\\repos\\WebLinks\\Nyheter.txt");
-            
+
             // Eventeull fix för att tömma fil
             // File.WriteAllText(filename, String.Empty);
+
+
             using (StreamWriter sw = new StreamWriter(filename))
             {
                 nyheter.ForEach(link => sw.WriteLine($"{link.Name}," +
                     $"{link.Description}," +
                     $"{link.Url}"));
+
             }
         }
-       public static void AddLink()
-      {
-          Console.Write("Link name: ");
-          string name = Console.ReadLine();
-          Console.Write("Describe the link: ");
-          string description = Console.ReadLine();
-          Console.Write("Link URL: ");
-          string url = Console.ReadLine();
-          nyheter.Add(new Link(name, description, url));
-       }
+        public static void AddLink()
+        {
+            Console.Write("Link name: ");
+            string name = Console.ReadLine();
+            Console.Write("Describe the link: ");
+            string description = Console.ReadLine();
+            Console.Write("Link URL: ");
+            string url = Console.ReadLine();
+            nyheter.Add(new Link(name, description, url));
+        }
+        public static void SearchList()
+        {
+            string searchWord;
+
+            Console.Write("Search list for: ");
+            searchWord = Console.ReadLine();
+            foreach (Link link in nyheter)
+            {
+                if (link.Name.Contains(searchWord, StringComparison.InvariantCultureIgnoreCase) ||
+                    link.Description.Contains(searchWord, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    Console.WriteLine($"{link.Name} : {link.Description} : {link.Url}");
+                }
+                else
+                {
+                    Console.WriteLine("I'm sorry, no such link in library");
+                }
+
+            }
+        }
     }
 }
-
-
