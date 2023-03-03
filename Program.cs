@@ -149,8 +149,8 @@ namespace WebLinks
             using (StreamWriter sw = new StreamWriter(filename))
             {
                 nyheter.ForEach(link => sw.WriteLine($"{link.Name}," +
-                    $"{link.Url}," +
-                    $"{link.Description}"));
+                    $"{link.Description}," +
+                    $"{link.Url}"));
             }
         }
        public static void AddLink()
