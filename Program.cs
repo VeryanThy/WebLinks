@@ -142,8 +142,10 @@ namespace WebLinks
         }
         public static void SaveToFile(string filename = "temp")
         {
+
             if (filename=="temp") filename = ($"{Environment.GetEnvironmentVariable("USERPROFILE")}\\source\\repos\\WebLinks\\Nyheter.txt");
 
+            // File.WriteAllText(filename, String.Empty);
             using (StreamWriter sw = new StreamWriter(filename))
             {
                 nyheter.ForEach(link => sw.WriteLine($"{link.Name}," +
