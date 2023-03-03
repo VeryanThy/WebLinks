@@ -125,10 +125,10 @@ namespace WebLinks
         {
             using (StreamWriter sw = new StreamWriter(filename))
             {
-
+                Nyheter.ForEach(link => sw.WriteLine($"{link.Name}," +
+                    $"{link.Url}," +
+                    $"{link.Description}"));
             }
-        }
-
         }
     }
 }
