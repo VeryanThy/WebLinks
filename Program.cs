@@ -68,11 +68,11 @@ namespace WebLinks
             }
         }
 
+            static List<Link> currentList = new List<Link>();
         static void Main(string[] args)
         {
             PrintWelcome();
             string command;
-            var currentList = new List<Link>();
             do
             {
                 Console.Write(": ");
@@ -149,7 +149,7 @@ namespace WebLinks
         {
             using (StreamWriter sw = new StreamWriter(filename))
             {
-                nyheter.ForEach(link => sw.WriteLine($"{link.Name}," +
+                currentList.ForEach(link => sw.WriteLine($"{link.Name}," +
                     $"{link.Url}," +
                     $"{link.Description}"));
             }
