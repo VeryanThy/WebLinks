@@ -1,6 +1,6 @@
-﻿
 using System;
 using System.Diagnostics;
+using System.Xml.Linq;
 
 namespace WebLinks
 {
@@ -81,6 +81,10 @@ namespace WebLinks
                 {
                     SaveToFile();
                 }
+                else if (command == "search")
+                {
+                    SearchList();
+                }
                 else
                 {
                     Console.WriteLine($"Unknown command '{command}'");
@@ -127,7 +131,8 @@ namespace WebLinks
                 "quit  - quit the program",
                 "add   - add link to list",
                 "list  - list available links",
-                "save  - save your links to file"
+                "save  - save your links to file",
+                "search - search list",
             };
             foreach (string h in hstr) Console.WriteLine(h);
         }
@@ -150,16 +155,36 @@ namespace WebLinks
         public static void SaveToFile(string filename = "temp")
         {
             if (filename == "temp") filename = ($"{Environment.GetEnvironmentVariable("USERPROFILE")}\\source\\repos\\WebLinks\\Nyheter.txt");
-            
+
             // Eventeull fix för att tömma fil
             // File.WriteAllText(filename, String.Empty);
+
+
             using (StreamWriter sw = new StreamWriter(filename))
             {
                 nyheter.ForEach(link => sw.WriteLine($"{link.Name}," +
                     $"{link.Description}," +
                     $"{link.Url}"));
+
             }
         }
+
+        // Experimentell spara till ny fil-metod
+        public static void SaveToNewFile()
+        {
+            string saveFile = "";
+
+            Console.WriteLine("Enter path or file name (excl .txt): ");
+            saveFile = Console.ReadLine();
+
+            using (StreamWriter sw = new StreamWriter(saveFile + ".txt"))
+            {
+                nyheter.ForEach((link) => sw.WriteLine($"{link.Name}," +
+                    $"{link.Description}," +
+                    $"{link.Url}"));
+            }
+        }
+
        public static void AddLink()
       {
           Console.Write("Link name: ");
@@ -174,4 +199,7 @@ namespace WebLinks
     }
 }
 
-
+            }
+        }
+    }
+}
