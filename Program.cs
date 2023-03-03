@@ -1,4 +1,7 @@
 ﻿
+using System;
+using System.Diagnostics;
+
 namespace WebLinks
 {
     internal class Program
@@ -9,7 +12,7 @@ namespace WebLinks
             private string name;
             private string url;
             private string description;
-            public Link(string name, string url, string desc)
+            public Link(string name, string desc, string url)
             {
                 this.name = name;
                 this.url = url;
@@ -97,7 +100,7 @@ namespace WebLinks
             {
                 if (link.Name.Contains(openName, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    System.Diagnostics.Process.Start(link.Url);
+                    Process.Start(new ProcessStartInfo { FileName = link.Url, UseShellExecute = true });
                 }
             }
         }
