@@ -1,16 +1,45 @@
 # WebLinks
 
-# ATT G�RA:
+# ATT GÖRA:
+LoadFile användarens sökväg
+
+SaveToFile användarens sökväg
+
+ListLoadedFiles AvailableFiles
+
+Print AvailableFiles
+
+SearchByName?
+
+SearchByKeyword? (description)
+
+
+# ANVÄNDA ATTRIBUT:
+Class Link: Name, Description, Url, Get, Set
+
+List<Link> nyheter
+
+Main commands: quit, help, load, list, open, add, save
+
+load: LoadFile() nyheter.txt
+  
+list: PrintContents()
+  
+open: Open(nyheter)
+  
+add: AddLink()
+  
+save: SaveToFile() nyheter.txt
+  
+# KLART:
 Organisera lista/listor
-R�tt variabler f�r prel. metoder
+
+Rätt variabler för prel. metoder: Privata strings för namn, beskrivning och URL
+
 Ladda fil
+
 Spara till fil
-Ev. s�kfunktion?
 
-Attribut:
-Privata strings f�r namn, beskrivning och URL
-List-ID
-Konstruktor "Namn, Beskrivning, URL och List-ID
+Konstruktor Link
 
-Metoder:
-Set och Get
+Metoder: quit, help, load, list, open, add, save
