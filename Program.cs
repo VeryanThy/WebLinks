@@ -6,7 +6,7 @@ namespace WebLinks
 {
     internal class Program
     {
-        static List<Link> nyheter = new List<Link>();
+       
         class Link
         {
             private string name;
@@ -37,9 +37,10 @@ namespace WebLinks
 
         static void Main(string[] args)
         {
+            List<Link> nyheter = new List<Link>();
+            LoadFile($"{Environment.GetEnvironmentVariable("USERPROFILE")}\\source\\repos\\WebLinks\\Nyheter.txt", nyheter);
             PrintWelcome();
-            string command;
-            LoadFile();
+            string command;           
             do
             {
                 Console.Write(": ");
@@ -57,7 +58,12 @@ namespace WebLinks
                 }
                 else if (command == "load")
                 {
-                    LoadFile();
+                    Console.Write("Enter the full path to the file you want to load: ");
+                    string path = Console.ReadLine();
+                    Console.Write("Name the file: ");
+                    string name = Console.ReadLine();
+                    List<Link> filename = new List<Link>();
+                    LoadFile(path, filename);
                 }
                 else if (command == "list")
                 {
@@ -69,10 +75,14 @@ namespace WebLinks
                 }
                 else if (command == "add")
                 {
-                    AddLink();
+                    Console.Write("Choose which file to add to: ");
+                    string filename = Console.ReadLine();
+                    AddLink(filename);
                 } else if (command == "save")
                 {
-                    SaveToFile();
+                    Console.Write("Choose which file to save to: ");
+                    string filename = Console.ReadLine();
+                    SaveToFile(filename);
                 }
                 else
                 {
@@ -124,9 +134,9 @@ namespace WebLinks
             };
             foreach (string h in hstr) Console.WriteLine(h);
         }
-        public static void LoadFile()
+        private static void LoadFile(string filepath, List<Link> filename)
         {
-            using (StreamReader sr = new StreamReader($"{Environment.GetEnvironmentVariable("USERPROFILE")}\\source\\repos\\WebLinks\\Nyheter.txt"))
+            using (StreamReader sr = new StreamReader(filepath))
             {
                 string ln;
 
@@ -136,11 +146,11 @@ namespace WebLinks
                     string name = line[0];
                     string description = line[1];
                     string url = line[2];
-                    nyheter.Add(new Link(line[0], line[1], line[2]));
+                    filename.Add(new Link(line[0], line[1], line[2]));
                 }
             }
         }
-        public static void SaveToFile(string filename = "temp")
+        private static void SaveToFile(string filename = "temp", List<Link> listname)
         {
 
             if (filename=="temp") filename = ($"{Environment.GetEnvironmentVariable("USERPROFILE")}\\source\\repos\\WebLinks\\Nyheter.txt");
@@ -149,12 +159,12 @@ namespace WebLinks
             // File.WriteAllText(filename, String.Empty);
             using (StreamWriter sw = new StreamWriter(filename))
             {
-                nyheter.ForEach(link => sw.WriteLine($"{link.Name}," +
+                listname.ForEach(link => sw.WriteLine($"{link.Name}," +
                     $"{link.Description}," +
                     $"{link.Url}"));
             }
         }
-       public static void AddLink()
+       private static void AddLink(List<Link> filename)
       {
           Console.Write("Link name: ");
           string name = Console.ReadLine();
@@ -162,7 +172,7 @@ namespace WebLinks
           string description = Console.ReadLine();
           Console.Write("Link URL: ");
           string url = Console.ReadLine();
-          nyheter.Add(new Link(name, description, url));
+          filename.Add(new Link(name, description, url));
        }
     }
 }
