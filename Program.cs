@@ -129,6 +129,16 @@ namespace WebLinks
             }
         }
 
+        public static void AddLink()
+        {
+            Console.Write("Link name: ");
+            string name = Console.ReadLine();
+            Console.Write("Describe the link: ");
+            string description = Console.ReadLine();
+            Console.Write("Link URL: ");
+            string url = Console.ReadLine();
+            Nyheter.Add(new Link(name, description, url));
+
         }
     }
 }
