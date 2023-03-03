@@ -42,13 +42,19 @@ namespace WebLinks
             LoadFile();
             do
             {
-                Console.Write(": ");
+                Console.Write("Command: ");
                 command = Console.ReadLine();
+                Console.Clear();
                 if (command == "quit")
                 {
-                    Console.WriteLine("Thank you and have a nice day.");
-
-                    SaveToFile($"{Environment.GetEnvironmentVariable("USERPROFILE")}\\source\\repos\\WebLinks\\Nyheter.txt");
+                    string Ans;
+                    Console.WriteLine("Do you want to save before quiting? Press Y for yes");
+                    Ans = Console.ReadLine();
+                    if (Ans == "Y")
+                    {
+                        SaveToFile($"{Environment.GetEnvironmentVariable("USERPROFILE")}\\source\\repos\\WebLinks\\Nyheter.txt");
+                    }
+                    else Console.WriteLine("Thank you and have a nice day.");
 
                 }
                 else if (command == "help")
@@ -70,7 +76,8 @@ namespace WebLinks
                 else if (command == "add")
                 {
                     AddLink();
-                } else if (command == "save")
+                }
+                else if (command == "save")
                 {
                     SaveToFile();
                 }
@@ -86,9 +93,9 @@ namespace WebLinks
         }
         private static void PrintWelcome()
         {
-            Console.WriteLine("Hello and welcome to the AWESOME NEWS-PROGRAM");
-            Console.WriteLine("that brings you to the news.");
-            Console.WriteLine("Write 'help' for help!");
+            Console.WriteLine("Welcome to the AWESOME NEWS-PROGRAM!");
+            Console.WriteLine("We bring you to the news.\n");
+            Console.WriteLine("Write 'help' for help!\n");
         }
         private static void Open(List<Link> nyheter)
         {
@@ -110,7 +117,7 @@ namespace WebLinks
             {
                 Console.WriteLine($"{element.Name} : {element.Description} : {element.Url}");
             }
-        }      
+        }
         private static void WriteTheHelp()
         {
             string[] hstr = {
@@ -142,7 +149,7 @@ namespace WebLinks
         }
         public static void SaveToFile(string filename = "temp")
         {
-            if (filename=="temp") filename = ($"{Environment.GetEnvironmentVariable("USERPROFILE")}\\source\\repos\\WebLinks\\Nyheter.txt");
+            if (filename == "temp") filename = ($"{Environment.GetEnvironmentVariable("USERPROFILE")}\\source\\repos\\WebLinks\\Nyheter.txt");
 
             using (StreamWriter sw = new StreamWriter(filename))
             {
@@ -151,16 +158,16 @@ namespace WebLinks
                     $"{link.Description}"));
             }
         }
-       public static void AddLink()
-      {
-          Console.Write("Link name: ");
-          string name = Console.ReadLine();
-          Console.Write("Link URL: ");
-          string url = Console.ReadLine();
-          Console.Write("Describe the link: ");
-          string description = Console.ReadLine();
-          nyheter.Add(new Link(name, url, description));
-       }
+        public static void AddLink()
+        {
+            Console.Write("Link name: ");
+            string name = Console.ReadLine();
+            Console.Write("Link URL: ");
+            string url = Console.ReadLine();
+            Console.Write("Describe the link: ");
+            string description = Console.ReadLine();
+            nyheter.Add(new Link(name, url, description));
+        }
     }
 }
 
