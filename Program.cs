@@ -3,7 +3,7 @@ namespace WebLinks
 {
     internal class Program
     {
-
+        static List<Link> nyheter = new List<Link>();
         class Link
         {
             private string name;
@@ -68,7 +68,7 @@ namespace WebLinks
             }
         }
 
-            static List<Link> currentList = new List<Link>();
+        static List<Link> currentList = new List<Link>();
         static void Main(string[] args)
         {
             PrintWelcome();
@@ -79,7 +79,7 @@ namespace WebLinks
                 command = Console.ReadLine();
                 if (command == "quit")
                 {
-                    Console.WriteLine("Good bye!");
+                    Console.WriteLine("Thank you and have a nice day.");
                 }
                 else if (command == "help")
                 {
@@ -92,6 +92,10 @@ namespace WebLinks
                 else if (command == "open")
                 {
                     Open(currentList);
+                }
+                else if (command == "add")
+                {
+                    AddLink();
                 }
                 else
                 {
@@ -107,8 +111,8 @@ namespace WebLinks
 
         private static void PrintWelcome()
         {
-            Console.WriteLine("Hello and welcome to the ... program ...");
-            Console.WriteLine("that does ... something.");
+            Console.WriteLine("Hello and welcome to the AWESOME NEWS-PROGRAM");
+            Console.WriteLine("that brings you to the news.");
             Console.WriteLine("Write 'help' for help!");
         }
 
@@ -118,23 +122,21 @@ namespace WebLinks
                 "help  - display this help",
                 "load  - load all links from a file",
                 "open  - open a specific link",
-                "quit  - quit the program"
+                "quit  - quit the program",
+                "add   - add link to list"
             };
             foreach (string h in hstr) Console.WriteLine(h);
         }
-
-        static List<Link> nyheter = new List<Link>();
-
         public static void LoadFile()
         {
-            using (StreamReader sr = new StreamReader("Nyheter.txt"))
+            using (StreamReader sr = new StreamReader($"{Environment.GetEnvironmentVariable("USERPROFILE")}\\source\\repos\\WebLinks\\Nyheter.txt"))
             {
                 int counter = 0;
                 string ln;
 
                 while ((ln = sr.ReadLine()) != null)
                 {
-                    string[] line = ln.Split(", ");
+                    string[] line = ln.Split(",");
                     string name = line[0];
                     string description = line[1];
                     string url = line[2];
@@ -149,7 +151,7 @@ namespace WebLinks
         {
             using (StreamWriter sw = new StreamWriter(filename))
             {
-                currentList.ForEach(link => sw.WriteLine($"{link.Name}," +
+                nyheter.ForEach(link => sw.WriteLine($"{link.Name}," +
                     $"{link.Url}," +
                     $"{link.Description}"));
             }
@@ -157,17 +159,17 @@ namespace WebLinks
         }
     }
 
-    public static void AddLink()
-    {
-        Console.Write("Link name: ");
-        string name = Console.ReadLine();
-        Console.Write("Describe the link: ");
-        string description = Console.ReadLine();
-        Console.Write("Link URL: ");
-        string url = Console.ReadLine();
-        nyheter.Add(new Link(name, description, url));
+    /*  public static void AddLink()
+      {
+          Console.Write("Link name: ");
+          string name = Console.ReadLine();
+          Console.Write("Describe the link: ");
+          string description = Console.ReadLine();
+          Console.Write("Link URL: ");
+          string url = Console.ReadLine();
+          nyheter.Add(new Link(name, description, url));
 
-    }
-
+      }*/
 }
+
 
