@@ -38,30 +38,6 @@ namespace WebLinks
         }
 
 
-        private static void Open(List<Link> nyheter)
-        {
-            string openName;
-
-            Console.Write("Name of link you want to open: ");
-            openName = Console.ReadLine();
-            foreach (Link link in nyheter)
-            {
-                if (link.Name.Contains(openName))
-                {
-                    System.Diagnostics.Process.Start(link.Url);
-                }
-            }
-        }
-
-        private static void PrintContents(List<Link> links)
-        {
-            foreach (Link element in links)
-            {
-                Console.WriteLine($"{element.Name} : {element.Description} : {element.Url}");
-            }
-        }
-
-        static List<Link> currentList = new List<Link>();
         static void Main(string[] args)
         {
             PrintWelcome();
@@ -73,6 +49,9 @@ namespace WebLinks
                 if (command == "quit")
                 {
                     Console.WriteLine("Thank you and have a nice day.");
+
+                    SaveToFile($"{Environment.GetEnvironmentVariable("USERPROFILE")}\\source\\repos\\WebLinks\\Nyheter.txt");
+
                 }
                 else if (command == "help")
                 {
@@ -88,7 +67,11 @@ namespace WebLinks
                 }
                 else if (command == "open")
                 {
-                    Open(currentList);
+                    Open(nyheter);
+                }
+                else if (command == "add")
+                {
+                    AddLink();
                 }
                 else if (command == "add")
                 {
@@ -113,6 +96,29 @@ namespace WebLinks
             Console.WriteLine("Write 'help' for help!");
         }
 
+        private static void Open(List<Link> nyheter)
+        {
+            string openName;
+
+            Console.Write("Name of link you want to open: ");
+            openName = Console.ReadLine();
+            foreach (Link link in nyheter)
+            {
+                if (link.Name.Contains(openName, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    System.Diagnostics.Process.Start(link.Url);
+                }
+            }
+        }
+
+        private static void PrintContents(List<Link> links)
+        {
+            foreach (Link element in links)
+            {
+                Console.WriteLine($"{element.Name} : {element.Description} : {element.Url}");
+            }
+        }
+        
         private static void WriteTheHelp()
         {
             string[] hstr = {
@@ -144,7 +150,6 @@ namespace WebLinks
             }
         }
 
-
         public static void SaveToFile(string filename = "Nyheter.txt")
         {
             using (StreamWriter sw = new StreamWriter(filename))
@@ -155,7 +160,6 @@ namespace WebLinks
             }
 
         }
-
       public static void AddLink()
       {
           Console.Write("Link name: ");
@@ -165,9 +169,9 @@ namespace WebLinks
           Console.Write("Link URL: ");
           string url = Console.ReadLine();
           nyheter.Add(new Link(name, description, url));
+      }
 
       }
-    }
 }
 
 
