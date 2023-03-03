@@ -170,6 +170,7 @@ namespace WebLinks
           string url = Console.ReadLine();
           nyheter.Add(new Link(name, description, url));
        }
+        public static List<>
     }
 }
 
