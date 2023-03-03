@@ -11,21 +11,23 @@ namespace WebLinks
             private string description;
             private int fileId;
 
-            public Link(string name, string url, string desc, int fileId) {
+            public Link(string name, string url, string desc, int fileId)
+            {
                 this.name = name;
                 this.url = url;
                 this.description = desc;
                 this.fileId = fileId;
             }
-            
-            public string Name {
+
+            public string Name
+            {
                 get { return name; }
-                set { name = value; }   
+                set { name = value; }
             }
 
             public string Url
             {
-                get { return url; } 
+                get { return url; }
                 set { url = value; }
             }
 
@@ -38,10 +40,10 @@ namespace WebLinks
             public int FileId
             {
                 get { return fileId; }
-                set { fileId = value; } 
+                set { fileId = value; }
             }
         }
-       
+
 
         private static void Open(List<Link> nyheter)
         {
@@ -58,9 +60,9 @@ namespace WebLinks
             }
         }
 
-        private static void PrintContents(List<Link> links) 
+        private static void PrintContents(List<Link> links)
         {
-            foreach (Link element in links) 
+            foreach (Link element in links)
             {
                 Console.WriteLine($"{element.Name}: {element.Url}");
             }
@@ -85,7 +87,7 @@ namespace WebLinks
                 }
                 else if (command == "load")
                 {
-                   currentList = LoadFile();
+                    LoadFile();
                 }
                 else if (command == "open")
                 {
@@ -121,11 +123,12 @@ namespace WebLinks
             foreach (string h in hstr) Console.WriteLine(h);
         }
 
+        static List<Link> nyheter = new List<Link>();
 
-        private static List<Link> LoadFile()
+        public static void LoadFile()
         {
-            List <Link> nyheter = new List<Link>();
-            using (StreamReader sr = new StreamReader("Nyheter.txt")) {
+            using (StreamReader sr = new StreamReader("Nyheter.txt"))
+            {
                 int counter = 0;
                 string ln;
 
@@ -133,13 +136,12 @@ namespace WebLinks
                 {
                     string[] line = ln.Split(", ");
                     string name = line[0];
-                    string description= line[1];
-                    string url= line[2];                 
+                    string description = line[1];
+                    string url = line[2];
                     nyheter.Add(new Link(line[0], line[1], line[2], counter));
                     counter++;
                 }
             }
-            return nyheter;
         }
 
 
@@ -147,44 +149,25 @@ namespace WebLinks
         {
             using (StreamWriter sw = new StreamWriter(filename))
             {
-                Nyheter.ForEach(link => sw.WriteLine($"{link.Name}," +
+                nyheter.ForEach(link => sw.WriteLine($"{link.Name}," +
                     $"{link.Url}," +
                     $"{link.Description}"));
             }
 
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public static void AddLink()
-        {
-            Console.Write("Link name: ");
-            string name = Console.ReadLine();
-            Console.Write("Describe the link: ");
-            string description = Console.ReadLine();
-            Console.Write("Link URL: ");
-            string url = Console.ReadLine();
-            Nyheter.Add(new Link(name, description, url));
-
         }
     }
+
+    public static void AddLink()
+    {
+        Console.Write("Link name: ");
+        string name = Console.ReadLine();
+        Console.Write("Describe the link: ");
+        string description = Console.ReadLine();
+        Console.Write("Link URL: ");
+        string url = Console.ReadLine();
+        nyheter.Add(new Link(name, description, url));
+
+    }
+
 }
+
