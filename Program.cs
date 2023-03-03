@@ -9,14 +9,13 @@ namespace WebLinks
             private string name;
             private string url;
             private string description;
-            private int fileId;
+  
 
-            public Link(string name, string url, string desc, int fileId)
+            public Link(string name, string url, string desc)
             {
                 this.name = name;
                 this.url = url;
                 this.description = desc;
-                this.fileId = fileId;
             }
 
             public string Name
@@ -36,18 +35,33 @@ namespace WebLinks
                 get { return description; }
                 set { description = value; }
             }
-
-            public int FileId
-            {
-                get { return fileId; }
-                set { fileId = value; }
-            }
         }
 
 
        
 
+
         static List<Link> currentList = new List<Link>();
+
+            Console.Write("Name of link you want to open: ");
+            openName = Console.ReadLine();
+            foreach (Link link in nyheter)
+            {
+                if (link.Name.Contains(openName))
+                {
+                    System.Diagnostics.Process.Start(link.Url);
+                }
+            }
+        }
+
+        private static void PrintContents(List<Link> links)
+        {
+            foreach (Link element in links)
+            {
+                Console.WriteLine($"{element.Name}: {element.Url}");
+            }
+        }
+
         static void Main(string[] args)
         {
             PrintWelcome();
@@ -59,6 +73,9 @@ namespace WebLinks
                 if (command == "quit")
                 {
                     Console.WriteLine("Thank you and have a nice day.");
+
+                    SaveToFile($"{Environment.GetEnvironmentVariable("USERPROFILE")}\\source\\repos\\WebLinks\\Nyheter.txt");
+
                 }
                 else if (command == "help")
                 {
@@ -70,7 +87,11 @@ namespace WebLinks
                 }
                 else if (command == "open")
                 {
-                    Open(currentList);
+                    Open(nyheter);
+                }
+                else if (command == "add")
+                {
+                    AddLink();
                 }
                 else if (command == "add")
                 {
@@ -141,8 +162,7 @@ namespace WebLinks
                     string name = line[0];
                     string description = line[1];
                     string url = line[2];
-                    nyheter.Add(new Link(line[0], line[1], line[2], counter));
-                    counter++;
+                    nyheter.Add(new Link(line[0], line[1], line[2]));
                 }
             }
         }
@@ -171,5 +191,18 @@ namespace WebLinks
             nyheter.Add(new Link(name, description, url));
         }
     }
+
+      public static void AddLink()
+      {
+          Console.Write("Link name: ");
+          string name = Console.ReadLine();
+          Console.Write("Describe the link: ");
+          string description = Console.ReadLine();
+          Console.Write("Link URL: ");
+          string url = Console.ReadLine();
+          nyheter.Add(new Link(name, description, url,));
+      }
+
 }
+
 
