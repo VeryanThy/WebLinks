@@ -12,7 +12,7 @@ namespace WebLinks
             private string name;
             private string url;
             private string description;
-            public Link(string name, string url, string desc)
+            public Link(string name, string desc, string url)
             {
                 this.name = name;
                 this.url = url;
@@ -150,24 +150,26 @@ namespace WebLinks
         public static void SaveToFile(string filename = "temp")
         {
             if (filename == "temp") filename = ($"{Environment.GetEnvironmentVariable("USERPROFILE")}\\source\\repos\\WebLinks\\Nyheter.txt");
-
+            
+            // Eventeull fix för att tömma fil
+            // File.WriteAllText(filename, String.Empty);
             using (StreamWriter sw = new StreamWriter(filename))
             {
                 nyheter.ForEach(link => sw.WriteLine($"{link.Name}," +
-                    $"{link.Url}," +
-                    $"{link.Description}"));
+                    $"{link.Description}," +
+                    $"{link.Url}"));
             }
         }
-        public static void AddLink()
-        {
-            Console.Write("Link name: ");
-            string name = Console.ReadLine();
-            Console.Write("Link URL: ");
-            string url = Console.ReadLine();
-            Console.Write("Describe the link: ");
-            string description = Console.ReadLine();
-            nyheter.Add(new Link(name, url, description));
-        }
+       public static void AddLink()
+      {
+          Console.Write("Link name: ");
+          string name = Console.ReadLine();
+          Console.Write("Describe the link: ");
+          string description = Console.ReadLine();
+          Console.Write("Link URL: ");
+          string url = Console.ReadLine();
+          nyheter.Add(new Link(name, description, url));
+       }
     }
 }
 

@@ -1,21 +1,11 @@
-Aftonbladet, https://www.aftonbladet.se/, nationella nyheter
-Expressen, https://www.expressen.se/, nationella nyheter
-Dagens Nyheter, https://www.dn.se/, nationella nyheter
-Svenska Dagbladet, https://www.svd.se/, nationella nyheter
-Göteborgsposten,	https://www.gp.se/, göteborgs snabb nyheter
-Sydsvenskan.se, https://www.sydsvenskan.se/, syd sverige nyheter
-Helsingborgs Dagblad, https://www.hd.se/, helsingborgs nyheter
-Dagens Industri, https://www.di.se/, ekonominyheter
-Reddit, https://www.reddit.com/, alla nyheter
-Google, https://www.google.com/, inga nyheter
-Aftonbladet, https://www.aftonbladet.se/, nationella nyheter
-Expressen, https://www.expressen.se/, nationella nyheter
-Dagens Nyheter, https://www.dn.se/, nationella nyheter
-Svenska Dagbladet, https://www.svd.se/, nationella nyheter
-Göteborgsposten,	https://www.gp.se/, göteborgs snabb nyheter
-Sydsvenskan.se, https://www.sydsvenskan.se/, syd sverige nyheter
-Helsingborgs Dagblad, https://www.hd.se/, helsingborgs nyheter
-Dagens Industri, https://www.di.se/, ekonominyheter
-Reddit, https://www.reddit.com/, alla nyheter
-Google, https://www.google.com/, inga nyheter
-facebook,http://www.facebook.com,sociala medier
+Aftonbladet,nationella nyheter,https://www.aftonbladet.se/
+Expressen,nationella nyheter,https://www.expressen.se/
+Dagens Nyheter,nationella nyheter,https://www.dn.se/
+Svenska Dagbladet,nationella nyheter,https://www.svd.se/
+Göteborgsposten,göteborgs snabb nyheter,https://www.gp.se/
+Sydsvenskan.se,syd sverige nyheter,https://www.sydsvenskan.se/
+Helsingborgs Dagblad,helsingborgs nyheter,https://www.hd.se/
+Dagens Industri,ekonominyheter,https://www.di.se/
+Reddit,alla nyheter,https://www.reddit.com/
+Google,inga nyheter,https://www.google.com/
+Facebook,sociala medier,http://www.facebook.com
