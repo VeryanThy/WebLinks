@@ -12,7 +12,7 @@ namespace WebLinks
             private string name;
             private string url;
             private string description;
-            public Link(string name, string desc, string url)
+            public Link(string name, string url, string desc)
             {
                 this.name = name;
                 this.url = url;
@@ -157,11 +157,11 @@ namespace WebLinks
       {
           Console.Write("Link name: ");
           string name = Console.ReadLine();
-          Console.Write("Describe the link: ");
-          string description = Console.ReadLine();
           Console.Write("Link URL: ");
           string url = Console.ReadLine();
-          nyheter.Add(new Link(name, description, url));
+          Console.Write("Describe the link: ");
+          string description = Console.ReadLine();
+          nyheter.Add(new Link(name, url, description));
        }
     }
 }
