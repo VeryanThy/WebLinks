@@ -71,6 +71,7 @@ namespace WebLinks
                 if (command == "quit")
                 {
                     Console.WriteLine("Thank you and have a nice day.");
+                    SaveToFile($"{Environment.GetEnvironmentVariable("USERPROFILE")}\\source\\repos\\WebLinks\\Nyheter.txt");
                 }
                 else if (command == "help")
                 {
