@@ -144,7 +144,8 @@ namespace WebLinks
         {
 
             if (filename=="temp") filename = ($"{Environment.GetEnvironmentVariable("USERPROFILE")}\\source\\repos\\WebLinks\\Nyheter.txt");
-
+            
+            // Eventeull fix för att tömma fil
             // File.WriteAllText(filename, String.Empty);
             using (StreamWriter sw = new StreamWriter(filename))
             {
