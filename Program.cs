@@ -9,14 +9,13 @@ namespace WebLinks
             private string name;
             private string url;
             private string description;
-            private int fileId;
+  
 
-            public Link(string name, string url, string desc, int fileId)
+            public Link(string name, string url, string desc)
             {
                 this.name = name;
                 this.url = url;
                 this.description = desc;
-                this.fileId = fileId;
             }
 
             public string Name
@@ -35,12 +34,6 @@ namespace WebLinks
             {
                 get { return description; }
                 set { description = value; }
-            }
-
-            public int FileId
-            {
-                get { return fileId; }
-                set { fileId = value; }
             }
         }
 
@@ -67,8 +60,6 @@ namespace WebLinks
                 Console.WriteLine($"{element.Name}: {element.Url}");
             }
         }
-
-        static List<Link> currentList = new List<Link>();
         static void Main(string[] args)
         {
             PrintWelcome();
@@ -91,7 +82,7 @@ namespace WebLinks
                 }
                 else if (command == "open")
                 {
-                    Open(currentList);
+                    Open(nyheter);
                 }
                 else if (command == "add")
                 {
@@ -140,8 +131,7 @@ namespace WebLinks
                     string name = line[0];
                     string description = line[1];
                     string url = line[2];
-                    nyheter.Add(new Link(line[0], line[1], line[2], counter));
-                    counter++;
+                    nyheter.Add(new Link(line[0], line[1], line[2]));
                 }
             }
         }
@@ -159,7 +149,7 @@ namespace WebLinks
         }
     }
 
-    /*  public static void AddLink()
+      public static void AddLink()
       {
           Console.Write("Link name: ");
           string name = Console.ReadLine();
@@ -167,9 +157,8 @@ namespace WebLinks
           string description = Console.ReadLine();
           Console.Write("Link URL: ");
           string url = Console.ReadLine();
-          nyheter.Add(new Link(name, description, url));
-
-      }*/
+          nyheter.Add(new Link(name, description, url,));
+      }
 }
 
 
