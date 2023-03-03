@@ -135,7 +135,7 @@ namespace WebLinks
                     string name = line[0];
                     string description= line[1];
                     string url= line[2];                 
-                    Nyheter.Add(new Link(line[0], line[1], line[2], counter));
+                    nyheter.Add(new Link(line[0], line[1], line[2], counter));
                     counter++;
                 }
             }
