@@ -11,21 +11,23 @@ namespace WebLinks
             private string description;
             private int fileId;
 
-            public Link(string name, string url, string desc, int fileId) {
+            public Link(string name, string url, string desc, int fileId)
+            {
                 this.name = name;
                 this.url = url;
                 this.description = desc;
                 this.fileId = fileId;
             }
-            
-            public string Name {
+
+            public string Name
+            {
                 get { return name; }
-                set { name = value; }   
+                set { name = value; }
             }
 
             public string Url
             {
-                get { return url; } 
+                get { return url; }
                 set { url = value; }
             }
 
@@ -38,10 +40,10 @@ namespace WebLinks
             public int FileId
             {
                 get { return fileId; }
-                set { fileId = value; } 
+                set { fileId = value; }
             }
         }
-       
+
 
         public static void Open()
         {
@@ -58,11 +60,11 @@ namespace WebLinks
             }
         }
 
-        public static void PrintContents() 
+        public static void PrintContents()
         {
-            foreach (string element in lista) 
+            foreach (Link link in Nyheter)
             {
-                Console.WriteLine($"{komplett lista}{}{}");
+                Console.WriteLine($"{link.Name}{link.Description}{link.Url}");
             }
         }
 
@@ -120,11 +122,12 @@ namespace WebLinks
             foreach (string h in hstr) Console.WriteLine(h);
         }
 
+        static List<Link> Nyheter = new List<Link>();
 
         public static void LoadFile()
         {
-            List <Link> Nyheter = new List<Link>();
-            using (StreamReader sr = new StreamReader("Nyheter.txt")) {
+            using (StreamReader sr = new StreamReader("Nyheter.txt"))
+            {
                 int counter = 0;
                 string ln;
 
@@ -132,8 +135,8 @@ namespace WebLinks
                 {
                     string[] line = ln.Split(", ");
                     string name = line[0];
-                    string description= line[1];
-                    string url= line[2];                 
+                    string description = line[1];
+                    string url = line[2];
                     Nyheter.Add(new Link(line[0], line[1], line[2], counter));
                     counter++;
                 }
