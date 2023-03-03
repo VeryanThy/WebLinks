@@ -51,11 +51,11 @@ namespace WebLinks
 
             Console.Write("Name of link you want to open: ");
             openName = Console.ReadLine();
-            foreach (Link in Nyheter)
+            foreach (Link link in Nyheter)
             {
-                if (Link.name.Contains(openName))
+                if (link.Name.Contains(openName))
                 {
-                    System.Diagnostics.Process.Start(Link.url);
+                    System.Diagnostics.Process.Start(link.Url);
                 }
             }
         }
