@@ -160,6 +160,23 @@ namespace WebLinks
                     $"{link.Url}"));
             }
         }
+
+        // Experimentell spara till ny fil-metod
+        public static void SaveToNewFile()
+        {
+            string saveFile = "";
+
+            Console.WriteLine("Enter path or file name (excl .txt): ");
+            saveFile = Console.ReadLine();
+
+            using (StreamWriter sw = new StreamWriter(saveFile + ".txt"))
+            {
+                nyheter.ForEach((link) => sw.WriteLine($"{link.Name}," +
+                    $"{link.Description}," +
+                    $"{link.Url}"));
+            }
+        }
+
        public static void AddLink()
       {
           Console.Write("Link name: ");
